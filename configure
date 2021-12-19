@@ -1,0 +1,4 @@
+CXX=clang++
+CXXFLAGS=-Wall
+NATIVE=on
+TUNE=generic
