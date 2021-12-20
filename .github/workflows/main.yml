@@ -1,0 +1,24 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: build output directory
+        run: mkdir -p proj/build
+      - name: build cmake lists
+        run: cmake -S . -B proj/build
+      - name: build binary
+        run: make -C proj/build
+      - name: run binary
+        run: ./proj/build/HelloWorld
+      - name: remove directory
+        run: rm -rf proj
