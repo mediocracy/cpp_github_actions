@@ -7,22 +7,18 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - name: install cppunit
-        run: sudo apt install -y libcppunit-dev
-      - name: configure
-        run: ./configure
-      - name: make and test
-        run: make && make test
-
-  say-hi:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: hello world
-        run: echo "Hello World!"
+      - name: build output directory
+        run: mkdir -p proj/build
+      - name: build cmake lists
+        run: cmake -S . -B proj/build
+      - name: build binary
+        run: make -C proj/build
+      - name: run binary
+        run: ./proj/build/HelloWorld
+      - name: remove directory
+        run: rm -rf proj
