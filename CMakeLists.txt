@@ -4,7 +4,7 @@ project(HelloWorld)
 
 add_executable(${PROJECT_NAME} hello.cpp)
 
-add_subdirectory(Adder)
+add_subdirectory(adder)
 
 target_include_directories(${PROJECT_NAME} PUBLIC adder)
 
